@@ -1,0 +1,35 @@
+{
+  "estudante": {
+    "nome": "Gabriel Nascimento de Freitas",
+    "curso": "Licenciatura em Educação Física",
+    "instituicao": "UFES - Universidade Federal do Espírito Santo",
+    "bio": "Central de produções acadêmicas, pesquisas, relatórios, projetos práticos e materiais audiovisuais desenvolvidos ao longo da graduação.",
+    "driveUrl": "https://drive.google.com/drive/folders/1jXzZ6R5uGZ0aEHWpc7HcdngKalkn5IZp?usp=sharing"
+  },
+  "trabalhos": [
+    {
+      "id": "epistemologia-apresentacao",
+      "titulo": "Apresentação de Epistemologia da EF",
+      "disciplina": "Epistemologia da Educação Física",
+      "tipo": "Apresentação",
+      "formato": "PowerPoint (PPTX)",
+      "ano": "2026",
+      "descricao": "Material e estrutura conceitual com os tópicos epistemológicos fundamentais da Educação Física, discutindo matrizes científicas, concepções pedagógicas e corporeidade.",
+      "tags": ["Epistemologia", "Seminário", "Slides", "Fundamentação Teórica"],
+      "linkDrive": "https://drive.google.com/drive/folders/1jXzZ6R5uGZ0aEHWpc7HcdngKalkn5IZp?usp=sharing",
+      "destaque": true
+    },
+    {
+      "id": "epistemologia-video",
+      "titulo": "Produção Audiovisual: Epistemologia da EF",
+      "disciplina": "Epistemologia da Educação Física",
+      "tipo": "Vídeo",
+      "formato": "Vídeo (MP4)",
+      "ano": "2026",
+      "descricao": "Trabalho audiovisual integrando debate crítico, reflexões formativas e correlações práticas sobre as correntes epistemológicas da Educação Física.",
+      "tags": ["Epistemologia", "Vídeo", "Debate", "Produção Audiovisual"],
+      "linkDrive": "https://drive.google.com/drive/folders/1jXzZ6R5uGZ0aEHWpc7HcdngKalkn5IZp?usp=sharing",
+      "destaque": true
+    }
+  ]
+}
