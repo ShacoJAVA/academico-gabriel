@@ -15,13 +15,17 @@ import {
   Calendar,
   Tag,
   CheckCircle2,
-  Share2
+  Eye,
+  X,
+  Play,
+  Maximize2
 } from 'lucide-react'
 
 export default function App() {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedDiscipline, setSelectedDiscipline] = useState('TODAS')
   const [selectedType, setSelectedType] = useState('TODOS')
+  const [activeModalItem, setActiveModalItem] = useState(null)
   const [darkMode, setDarkMode] = useState(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('theme')
@@ -40,6 +44,17 @@ export default function App() {
       localStorage.setItem('theme', 'light')
     }
   }, [darkMode])
+
+  // Fechar modal com tecla ESC
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setActiveModalItem(null)
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [])
 
   // Lista única de disciplinas
   const disciplines = useMemo(() => {
@@ -122,12 +137,11 @@ export default function App() {
               href={data.estudante.driveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center space-x-2 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-semibold rounded-lg bg-blue-600 text-white hover:bg-blue-700 active:scale-95 shadow-sm shadow-blue-600/30 transition-all"
+              className="inline-flex items-center space-x-2 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-semibold rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-all border border-slate-200 dark:border-slate-700"
             >
-              <FolderOpen className="w-4 h-4" />
-              <span className="hidden xs:inline">Pasta Google Drive</span>
-              <span className="xs:hidden">Drive</span>
-              <ExternalLink className="w-3.5 h-3.5 opacity-70" />
+              <FolderOpen className="w-4 h-4 text-blue-500" />
+              <span className="hidden xs:inline">Pasta Completa</span>
+              <ExternalLink className="w-3.5 h-3.5 opacity-60" />
             </a>
 
             <button
@@ -160,12 +174,12 @@ export default function App() {
           <div className="pt-2 flex flex-wrap items-center justify-center gap-3 text-xs text-slate-500 dark:text-slate-400">
             <span className="inline-flex items-center space-x-1">
               <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-              <span>Acesso livre para docentes e avaliadores</span>
+              <span>Acesso direto ao trabalho (sem navegar em pastas)</span>
             </span>
             <span>•</span>
             <span className="inline-flex items-center space-x-1">
-              <FolderOpen className="w-4 h-4 text-blue-500" />
-              <span>Armazenamento oficial no Google Drive</span>
+              <Eye className="w-4 h-4 text-blue-500" />
+              <span>Visualização interativa na própria página</span>
             </span>
           </div>
         </div>
@@ -331,17 +345,24 @@ export default function App() {
                   </div>
                 </div>
 
-                {/* Botão de Ação / Link do Drive */}
-                <div className="pt-5 mt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
-                  <span className="text-xs text-slate-400">Google Drive</span>
+                {/* Botões de Ação Direta */}
+                <div className="pt-5 mt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between gap-2">
+                  <button
+                    onClick={() => setActiveModalItem(item)}
+                    className="inline-flex items-center space-x-2 px-3.5 py-2 text-xs sm:text-sm font-semibold rounded-xl bg-blue-600 hover:bg-blue-700 text-white shadow-sm shadow-blue-500/20 active:scale-95 transition-all"
+                  >
+                    <Eye className="w-4 h-4" />
+                    <span>Visualizar Aqui</span>
+                  </button>
+
                   <a
-                    href={item.linkDrive}
+                    href={item.previewUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center space-x-2 text-sm font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 group/link"
+                    className="inline-flex items-center space-x-1.5 text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors py-2 px-2"
                   >
-                    <span>Acessar Trabalho</span>
-                    <ExternalLink className="w-4 h-4 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
+                    <span>Abrir Tela Cheia</span>
+                    <ExternalLink className="w-3.5 h-3.5 opacity-70" />
                   </a>
                 </div>
               </article>
@@ -360,6 +381,81 @@ export default function App() {
         )}
       </main>
 
+      {/* Modal Interativo de Visualização Direta */}
+      {activeModalItem && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/80 backdrop-blur-sm transition-all"
+          onClick={() => setActiveModalItem(null)}
+        >
+          <div
+            className="relative w-full max-w-5xl bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden flex flex-col max-h-[92vh] animate-in fade-in zoom-in-95 duration-150"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Barra do Topo do Modal */}
+            <div className="p-4 sm:px-6 sm:py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-slate-50/50 dark:bg-slate-900/50">
+              <div className="flex items-center space-x-3 pr-2 overflow-hidden">
+                <div className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 shrink-0">
+                  {getFormatIcon(activeModalItem.tipo)}
+                </div>
+                <div className="min-w-0">
+                  <h3 className="font-bold text-sm sm:text-base text-slate-900 dark:text-white truncate">
+                    {activeModalItem.titulo}
+                  </h3>
+                  <p className="text-xs text-blue-600 dark:text-blue-400 font-medium truncate">
+                    {activeModalItem.disciplina} • {activeModalItem.formato}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center space-x-2 shrink-0">
+                <a
+                  href={activeModalItem.previewUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-lg text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                  title="Abrir em Nova Aba"
+                >
+                  <Maximize2 className="w-4 h-4" />
+                </a>
+
+                <button
+                  onClick={() => setActiveModalItem(null)}
+                  className="p-2 rounded-lg text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                  title="Fechar (Esc)"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+
+            {/* Container do Iframe / Player Embutido */}
+            <div className="relative w-full flex-1 bg-black min-h-[50vh] sm:min-h-[65vh]">
+              <iframe
+                src={activeModalItem.previewUrl}
+                title={activeModalItem.titulo}
+                className="w-full h-full absolute inset-0 border-0"
+                allow="autoplay; fullscreen"
+                allowFullScreen
+              />
+            </div>
+
+            {/* Rodapé do Modal */}
+            <div className="p-3 sm:px-6 sm:py-3 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex items-center justify-between text-xs text-slate-500">
+              <span className="truncate pr-2">{activeModalItem.descricao}</span>
+              <a
+                href={activeModalItem.directUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 dark:text-blue-400 hover:underline font-medium shrink-0 flex items-center space-x-1"
+              >
+                <span>Link Original</span>
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Rodapé */}
       <footer className="mt-auto border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 py-6 px-4 sm:px-6 transition-colors">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
@@ -373,7 +469,7 @@ export default function App() {
               rel="noopener noreferrer"
               className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
             >
-              Abrir Pasta do Drive
+              Pasta Geral no Drive
             </a>
             <span>•</span>
             <span>Licenciatura em Educação Física</span>

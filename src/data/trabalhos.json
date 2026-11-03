@@ -12,11 +12,12 @@
       "titulo": "Apresentação de Epistemologia da EF",
       "disciplina": "Epistemologia da Educação Física",
       "tipo": "Apresentação",
-      "formato": "PowerPoint (PPTX)",
+      "formato": "PowerPoint (PPTX / Slides)",
       "ano": "2026",
       "descricao": "Material e estrutura conceitual com os tópicos epistemológicos fundamentais da Educação Física, discutindo matrizes científicas, concepções pedagógicas e corporeidade.",
       "tags": ["Epistemologia", "Seminário", "Slides", "Fundamentação Teórica"],
-      "linkDrive": "https://drive.google.com/drive/folders/1jXzZ6R5uGZ0aEHWpc7HcdngKalkn5IZp?usp=sharing",
+      "previewUrl": "https://docs.google.com/presentation/d/1HCmPzRliu4mna5J_AamjLIJRlKMqMB_Q/preview",
+      "directUrl": "https://docs.google.com/presentation/d/1HCmPzRliu4mna5J_AamjLIJRlKMqMB_Q/edit?usp=drive_link",
       "destaque": true
     },
     {
@@ -28,7 +29,8 @@
       "ano": "2026",
       "descricao": "Trabalho audiovisual integrando debate crítico, reflexões formativas e correlações práticas sobre as correntes epistemológicas da Educação Física.",
       "tags": ["Epistemologia", "Vídeo", "Debate", "Produção Audiovisual"],
-      "linkDrive": "https://drive.google.com/drive/folders/1jXzZ6R5uGZ0aEHWpc7HcdngKalkn5IZp?usp=sharing",
+      "previewUrl": "https://drive.google.com/file/d/1lbrGDqcAAsa7UiuMp5rDTXNo1hVAyiRt/preview",
+      "directUrl": "https://drive.google.com/file/d/1lbrGDqcAAsa7UiuMp5rDTXNo1hVAyiRt/view?usp=drive_link",
       "destaque": true
     }
   ]
