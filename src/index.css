@@ -6,6 +6,10 @@
     --font-mono: 'JetBrains Mono', ui-monospace, monospace;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
@@ -24,17 +28,30 @@
   }
 }
 
+/* Glassmorphism Refinado de Alta Precisao */
+.galaem-glass {
+  background: rgba(18, 18, 18, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.35);
+}
+
 .galaem-card {
-  background-color: rgba(23, 23, 23, 0.75);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(38, 38, 38, 0.8);
-  border-radius: 1rem;
-  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  background: linear-gradient(180deg, rgba(28, 28, 32, 0.65) 0%, rgba(18, 18, 20, 0.8) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 1.25rem;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .galaem-card:hover {
   border-color: rgba(245, 158, 11, 0.45);
-  box-shadow: 0 0 25px rgba(245, 158, 11, 0.08);
+  border-top-color: rgba(245, 158, 11, 0.7);
+  box-shadow: 0 15px 35px -10px rgba(245, 158, 11, 0.18), 0 0 25px rgba(245, 158, 11, 0.08);
 }
 
 .galaem-glow-amber {
@@ -44,6 +61,6 @@
 .galaem-grid-pattern {
   background-size: 36px 36px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
 }
